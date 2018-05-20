@@ -1,0 +1,14 @@
+--enable-build-in-source-tree
+--with-system-poppler
+--with-system-mpfr
+--with-system-gmp
+--with-system-cairo
+--with-system-libpng
+--with-system-pixman
+--with-system-gd
+--with-system-zlib
+--with-system-freetype
+--disable-native-texlive-build
+--disable-web2c
+--disable-dvisvgm
+--disable-xdvik

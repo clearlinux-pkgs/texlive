@@ -1,0 +1,23 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+libXmu-dev
+pixman-dev
+cairo-dev
+libpng-dev
+poppler
+poppler-dev
+harfbuzz-dev
+icu4c-dev
+libgd-dev
+icu4c
+mpfr-dev
+gmp-dev
+freetype
+freetype-dev
+LuaJIT
+LuaJIT-dev
+flex
+bison
+doxygen
+ghostscript
+ghostscript-dev
