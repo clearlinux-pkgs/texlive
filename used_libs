@@ -1,0 +1,9 @@
+libX11.so.6
+libc.so.6
+libfreetype.so.6
+libgcc_s.so.1
+libgd.so.3
+libm.so.6
+libpng16.so.16
+libstdc++.so.6
+libz.so.1

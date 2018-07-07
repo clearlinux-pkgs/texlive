@@ -1,0 +1,10 @@
+# This file contains recursive sources that require this package
+R-MALDIquant
+R-bbmle
+R-effects
+R-flexsurv
+R-lfe
+R-openxlsx
+R-phylobase
+R-robCompositions
+R-tikzDevice
