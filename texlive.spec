@@ -4,12 +4,12 @@
 #
 Name     : texlive
 Version  : 20180414
-Release  : 7
+Release  : 10
 URL      : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Source0  : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Summary  : Descriptive vector graphics language
 Group    : Development/Tools
-License  : Apache-2.0 BSD-3-Clause BSD-3-Clause-Clear BSL-1.0 CPL-1.0 FTL GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-2.1+ LGPL-3.0 Libpng MIT MPL-1.1 MakeIndex NCSA NPL-1.1 Zlib
+License  : Apache-2.0 BSD-3-Clause BSL-1.0 CPL-1.0 FTL GPL-2.0 GPL-3.0 IJG LGPL-2.0 LGPL-2.1 LGPL-2.1+ LGPL-3.0 Libpng MIT MPL-1.1 MakeIndex NCSA Zlib psutils
 Requires: texlive-bin
 Requires: texlive-license
 Requires: texlive-man
@@ -17,8 +17,10 @@ Requires: texlive-data
 BuildRequires : LuaJIT
 BuildRequires : LuaJIT-dev
 BuildRequires : bison
+BuildRequires : buildreq-cmake
+BuildRequires : buildreq-cpan
+BuildRequires : buildreq-qmake
 BuildRequires : cairo-dev
-BuildRequires : cmake
 BuildRequires : docbook-xml
 BuildRequires : doxygen
 BuildRequires : flex
@@ -53,8 +55,6 @@ BuildRequires : pkgconfig(valgrind)
 BuildRequires : pkgconfig(xpm)
 BuildRequires : poppler
 BuildRequires : poppler-dev
-BuildRequires : qtbase-dev
-BuildRequires : qtbase-extras
 BuildRequires : sed
 BuildRequires : texlive
 
@@ -127,7 +127,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530991134
+export SOURCE_DATE_EPOCH=1532719873
 %configure --disable-static --enable-build-in-source-tree \
 --with-system-poppler \
 --with-system-mpfr \
@@ -145,81 +145,82 @@ export SOURCE_DATE_EPOCH=1530991134
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1530991134
+export SOURCE_DATE_EPOCH=1532719873
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/texlive
-cp utils/t1utils/t1utils-src/LICENSE %{buildroot}/usr/share/doc/texlive/utils_t1utils_t1utils-src_LICENSE
-cp utils/m-tx/mtx-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_m-tx_mtx-src_COPYING
-cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_xindy-src_COPYING
-cp utils/axodraw2/axodraw2-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_axodraw2_axodraw2-src_COPYING
-cp utils/autosp/autosp-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_autosp_autosp-src_COPYING
-cp utils/ps2eps/ps2eps-src/LICENSE.txt %{buildroot}/usr/share/doc/texlive/utils_ps2eps_ps2eps-src_LICENSE.txt
-cp utils/pmx/pmx-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_pmx_pmx-src_COPYING
-cp utils/asymptote/LICENSE.LESSER %{buildroot}/usr/share/doc/texlive/utils_asymptote_LICENSE.LESSER
-cp utils/asymptote/LICENSE %{buildroot}/usr/share/doc/texlive/utils_asymptote_LICENSE
-cp utils/devnag/COPYING %{buildroot}/usr/share/doc/texlive/utils_devnag_COPYING
-cp texk/psutils/psutils-src/LICENSE %{buildroot}/usr/share/doc/texlive/texk_psutils_psutils-src_LICENSE
-cp texk/mendexk/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_mendexk_COPYRIGHT
-cp texk/chktex/chktex-src/COPYING %{buildroot}/usr/share/doc/texlive/texk_chktex_chktex-src_COPYING
-cp texk/chktex/regex/COPYING.LIB %{buildroot}/usr/share/doc/texlive/texk_chktex_regex_COPYING.LIB
-cp texk/ptexenc/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_ptexenc_COPYRIGHT
-cp texk/lcdf-typetools/lcdf-typetools-src/COPYING %{buildroot}/usr/share/doc/texlive/texk_lcdf-typetools_lcdf-typetools-src_COPYING
-cp texk/afm2pl/COPYING %{buildroot}/usr/share/doc/texlive/texk_afm2pl_COPYING
-cp texk/gregorio/gregorio-src/COPYING.md %{buildroot}/usr/share/doc/texlive/texk_gregorio_gregorio-src_COPYING.md
-cp texk/makejvf/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_makejvf_COPYRIGHT
-cp texk/detex/detex-src/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_detex_detex-src_COPYRIGHT
-cp texk/upmendex/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_upmendex_COPYRIGHT
-cp texk/makeindexk/COPYING %{buildroot}/usr/share/doc/texlive/texk_makeindexk_COPYING
-cp texk/dvi2tty/dvi2tty-src/COPYING %{buildroot}/usr/share/doc/texlive/texk_dvi2tty_dvi2tty-src_COPYING
-cp texk/dvi2tty/dvi2tty-src/debian/copyright %{buildroot}/usr/share/doc/texlive/texk_dvi2tty_dvi2tty-src_debian_copyright
-cp texk/web2c/pdftexdir/regex/COPYING.LIB %{buildroot}/usr/share/doc/texlive/texk_web2c_pdftexdir_regex_COPYING.LIB
-cp texk/web2c/euptexdir/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_web2c_euptexdir_COPYRIGHT
-cp texk/web2c/luatexdir/luasocket/LICENSE %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luasocket_LICENSE
-cp texk/web2c/luatexdir/luazip/doc/us/license.html %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luazip_doc_us_license.html
-cp texk/web2c/luatexdir/luafontloader/fontforge/LICENSE %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luafontloader_fontforge_LICENSE
-cp texk/web2c/luatexdir/luafilesystem/LICENSE %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luafilesystem_LICENSE
-cp texk/web2c/luatexdir/luafilesystem/doc/us/license.html %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luafilesystem_doc_us_license.html
-cp texk/web2c/luatexdir/luaffi/LICENSE %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luaffi_LICENSE
-cp texk/web2c/xetexdir/COPYING %{buildroot}/usr/share/doc/texlive/texk_web2c_xetexdir_COPYING
-cp texk/web2c/ptexdir/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_web2c_ptexdir_COPYRIGHT
-cp texk/web2c/uptexdir/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_web2c_uptexdir_COPYRIGHT
-cp texk/bibtex-x/COPYING %{buildroot}/usr/share/doc/texlive/texk_bibtex-x_COPYING
-cp texk/bibtex-x/csf/COPYING %{buildroot}/usr/share/doc/texlive/texk_bibtex-x_csf_COPYING
-cp texk/dvipng/dvipng-src/COPYING %{buildroot}/usr/share/doc/texlive/texk_dvipng_dvipng-src_COPYING
-cp texk/dvipng/dvipng-src/COPYING.LESSER %{buildroot}/usr/share/doc/texlive/texk_dvipng_dvipng-src_COPYING.LESSER
-cp texk/dvipdfm-x/COPYING %{buildroot}/usr/share/doc/texlive/texk_dvipdfm-x_COPYING
-cp texk/dvisvgm/dvisvgm-src/COPYING %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_COPYING
-cp texk/dvisvgm/dvisvgm-src/tests/gtest/LICENSE %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_tests_gtest_LICENSE
-cp texk/dvisvgm/dvisvgm-src/libs/ff-woff/LICENSE %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_ff-woff_LICENSE
-cp texk/dvisvgm/dvisvgm-src/libs/clipper/License.txt %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_clipper_License.txt
-cp texk/dvisvgm/dvisvgm-src/libs/variant/LICENSE.md %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_variant_LICENSE.md
-cp texk/dvisvgm/dvisvgm-src/libs/woff2/LICENSE %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_woff2_LICENSE
-cp texk/dvisvgm/dvisvgm-src/libs/brotli/LICENSE %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_brotli_LICENSE
-cp texk/ttfdump/COPYING %{buildroot}/usr/share/doc/texlive/texk_ttfdump_COPYING
-cp libs/graphite2/graphite2-src/COPYING %{buildroot}/usr/share/doc/texlive/libs_graphite2_graphite2-src_COPYING
-cp libs/graphite2/graphite2-src/LICENSE %{buildroot}/usr/share/doc/texlive/libs_graphite2_graphite2-src_LICENSE
-cp libs/libpng/libpng-src/LICENSE %{buildroot}/usr/share/doc/texlive/libs_libpng_libpng-src_LICENSE
-cp libs/libpng/libpng-src/contrib/gregbook/COPYING %{buildroot}/usr/share/doc/texlive/libs_libpng_libpng-src_contrib_gregbook_COPYING
-cp libs/libpng/libpng-src/contrib/gregbook/LICENSE %{buildroot}/usr/share/doc/texlive/libs_libpng_libpng-src_contrib_gregbook_LICENSE
-cp libs/zlib/zlib-src/contrib/dotzlib/LICENSE_1_0.txt %{buildroot}/usr/share/doc/texlive/libs_zlib_zlib-src_contrib_dotzlib_LICENSE_1_0.txt
+cp libs/cairo/cairo-src/COPYING-LGPL-2.1 %{buildroot}/usr/share/doc/texlive/libs_cairo_cairo-src_COPYING-LGPL-2.1
+cp libs/cairo/cairo-src/COPYING-MPL-1.1 %{buildroot}/usr/share/doc/texlive/libs_cairo_cairo-src_COPYING-MPL-1.1
 cp libs/freetype2/freetype-src/docs/GPLv2.TXT %{buildroot}/usr/share/doc/texlive/libs_freetype2_freetype-src_docs_GPLv2.TXT
 cp libs/freetype2/freetype-src/docs/LICENSE.TXT %{buildroot}/usr/share/doc/texlive/libs_freetype2_freetype-src_docs_LICENSE.TXT
 cp libs/gd/libgd-src/src/COPYING %{buildroot}/usr/share/doc/texlive/libs_gd_libgd-src_src_COPYING
+cp libs/graphite2/graphite2-src/COPYING %{buildroot}/usr/share/doc/texlive/libs_graphite2_graphite2-src_COPYING
+cp libs/graphite2/graphite2-src/LICENSE %{buildroot}/usr/share/doc/texlive/libs_graphite2_graphite2-src_LICENSE
+cp libs/icu/icu-src/license.html %{buildroot}/usr/share/doc/texlive/libs_icu_icu-src_license.html
+cp libs/libpng/libpng-src/LICENSE %{buildroot}/usr/share/doc/texlive/libs_libpng_libpng-src_LICENSE
+cp libs/libpng/libpng-src/contrib/gregbook/COPYING %{buildroot}/usr/share/doc/texlive/libs_libpng_libpng-src_contrib_gregbook_COPYING
+cp libs/libpng/libpng-src/contrib/gregbook/LICENSE %{buildroot}/usr/share/doc/texlive/libs_libpng_libpng-src_contrib_gregbook_LICENSE
+cp libs/luajit/LuaJIT-src/COPYRIGHT %{buildroot}/usr/share/doc/texlive/libs_luajit_LuaJIT-src_COPYRIGHT
+cp libs/pixman/pixman-src/COPYING %{buildroot}/usr/share/doc/texlive/libs_pixman_pixman-src_COPYING
 cp libs/poppler/poppler-src/COPYING %{buildroot}/usr/share/doc/texlive/libs_poppler_poppler-src_COPYING
 cp libs/poppler/poppler-src/COPYING3 %{buildroot}/usr/share/doc/texlive/libs_poppler_poppler-src_COPYING3
-cp libs/cairo/cairo-src/COPYING-MPL-1.1 %{buildroot}/usr/share/doc/texlive/libs_cairo_cairo-src_COPYING-MPL-1.1
-cp libs/cairo/cairo-src/COPYING-LGPL-2.1 %{buildroot}/usr/share/doc/texlive/libs_cairo_cairo-src_COPYING-LGPL-2.1
-cp libs/zziplib/zziplib-src/COPYING.LIB %{buildroot}/usr/share/doc/texlive/libs_zziplib_zziplib-src_COPYING.LIB
-cp libs/zziplib/zziplib-src/docs/COPYING.ZLIB %{buildroot}/usr/share/doc/texlive/libs_zziplib_zziplib-src_docs_COPYING.ZLIB
-cp libs/zziplib/zziplib-src/docs/COPYING.LIB %{buildroot}/usr/share/doc/texlive/libs_zziplib_zziplib-src_docs_COPYING.LIB
-cp libs/zziplib/zziplib-src/docs/COPYING.MPL %{buildroot}/usr/share/doc/texlive/libs_zziplib_zziplib-src_docs_COPYING.MPL
-cp libs/pixman/pixman-src/COPYING %{buildroot}/usr/share/doc/texlive/libs_pixman_pixman-src_COPYING
-cp libs/luajit/LuaJIT-src/COPYRIGHT %{buildroot}/usr/share/doc/texlive/libs_luajit_LuaJIT-src_COPYRIGHT
-cp libs/icu/icu-src/license.html %{buildroot}/usr/share/doc/texlive/libs_icu_icu-src_license.html
 cp libs/teckit/TECkit-src/license/License_CPLv05.txt %{buildroot}/usr/share/doc/texlive/libs_teckit_TECkit-src_license_License_CPLv05.txt
 cp libs/teckit/TECkit-src/license/License_LGPLv21.txt %{buildroot}/usr/share/doc/texlive/libs_teckit_TECkit-src_license_License_LGPLv21.txt
 cp libs/xpdf/xpdf-src/COPYING %{buildroot}/usr/share/doc/texlive/libs_xpdf_xpdf-src_COPYING
 cp libs/xpdf/xpdf-src/COPYING3 %{buildroot}/usr/share/doc/texlive/libs_xpdf_xpdf-src_COPYING3
+cp libs/zlib/zlib-src/contrib/dotzlib/LICENSE_1_0.txt %{buildroot}/usr/share/doc/texlive/libs_zlib_zlib-src_contrib_dotzlib_LICENSE_1_0.txt
+cp libs/zziplib/zziplib-src/COPYING.LIB %{buildroot}/usr/share/doc/texlive/libs_zziplib_zziplib-src_COPYING.LIB
+cp libs/zziplib/zziplib-src/docs/COPYING.LIB %{buildroot}/usr/share/doc/texlive/libs_zziplib_zziplib-src_docs_COPYING.LIB
+cp libs/zziplib/zziplib-src/docs/COPYING.MPL %{buildroot}/usr/share/doc/texlive/libs_zziplib_zziplib-src_docs_COPYING.MPL
+cp libs/zziplib/zziplib-src/docs/COPYING.ZLIB %{buildroot}/usr/share/doc/texlive/libs_zziplib_zziplib-src_docs_COPYING.ZLIB
+cp texk/afm2pl/COPYING %{buildroot}/usr/share/doc/texlive/texk_afm2pl_COPYING
+cp texk/bibtex-x/COPYING %{buildroot}/usr/share/doc/texlive/texk_bibtex-x_COPYING
+cp texk/bibtex-x/csf/COPYING %{buildroot}/usr/share/doc/texlive/texk_bibtex-x_csf_COPYING
+cp texk/chktex/chktex-src/COPYING %{buildroot}/usr/share/doc/texlive/texk_chktex_chktex-src_COPYING
+cp texk/chktex/regex/COPYING.LIB %{buildroot}/usr/share/doc/texlive/texk_chktex_regex_COPYING.LIB
+cp texk/detex/detex-src/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_detex_detex-src_COPYRIGHT
+cp texk/dvi2tty/dvi2tty-src/COPYING %{buildroot}/usr/share/doc/texlive/texk_dvi2tty_dvi2tty-src_COPYING
+cp texk/dvi2tty/dvi2tty-src/debian/copyright %{buildroot}/usr/share/doc/texlive/texk_dvi2tty_dvi2tty-src_debian_copyright
+cp texk/dvipdfm-x/COPYING %{buildroot}/usr/share/doc/texlive/texk_dvipdfm-x_COPYING
+cp texk/dvipng/dvipng-src/COPYING %{buildroot}/usr/share/doc/texlive/texk_dvipng_dvipng-src_COPYING
+cp texk/dvipng/dvipng-src/COPYING.LESSER %{buildroot}/usr/share/doc/texlive/texk_dvipng_dvipng-src_COPYING.LESSER
+cp texk/dvipng/dvipng-src/COPYING.gd %{buildroot}/usr/share/doc/texlive/texk_dvipng_dvipng-src_COPYING.gd
+cp texk/dvisvgm/dvisvgm-src/COPYING %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_COPYING
+cp texk/dvisvgm/dvisvgm-src/libs/brotli/LICENSE %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_brotli_LICENSE
+cp texk/dvisvgm/dvisvgm-src/libs/clipper/License.txt %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_clipper_License.txt
+cp texk/dvisvgm/dvisvgm-src/libs/ff-woff/LICENSE %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_ff-woff_LICENSE
+cp texk/dvisvgm/dvisvgm-src/libs/variant/LICENSE.md %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_variant_LICENSE.md
+cp texk/dvisvgm/dvisvgm-src/libs/woff2/LICENSE %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_woff2_LICENSE
+cp texk/dvisvgm/dvisvgm-src/tests/gtest/LICENSE %{buildroot}/usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_tests_gtest_LICENSE
+cp texk/gregorio/gregorio-src/COPYING.md %{buildroot}/usr/share/doc/texlive/texk_gregorio_gregorio-src_COPYING.md
+cp texk/lcdf-typetools/lcdf-typetools-src/COPYING %{buildroot}/usr/share/doc/texlive/texk_lcdf-typetools_lcdf-typetools-src_COPYING
+cp texk/makeindexk/COPYING %{buildroot}/usr/share/doc/texlive/texk_makeindexk_COPYING
+cp texk/makejvf/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_makejvf_COPYRIGHT
+cp texk/mendexk/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_mendexk_COPYRIGHT
+cp texk/psutils/psutils-src/LICENSE %{buildroot}/usr/share/doc/texlive/texk_psutils_psutils-src_LICENSE
+cp texk/ptexenc/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_ptexenc_COPYRIGHT
+cp texk/ttfdump/COPYING %{buildroot}/usr/share/doc/texlive/texk_ttfdump_COPYING
+cp texk/upmendex/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_upmendex_COPYRIGHT
+cp texk/web2c/euptexdir/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_web2c_euptexdir_COPYRIGHT
+cp texk/web2c/luatexdir/luaffi/LICENSE %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luaffi_LICENSE
+cp texk/web2c/luatexdir/luafilesystem/LICENSE %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luafilesystem_LICENSE
+cp texk/web2c/luatexdir/luafilesystem/doc/us/license.html %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luafilesystem_doc_us_license.html
+cp texk/web2c/luatexdir/luafontloader/fontforge/LICENSE %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luafontloader_fontforge_LICENSE
+cp texk/web2c/luatexdir/luasocket/LICENSE %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luasocket_LICENSE
+cp texk/web2c/luatexdir/luazip/doc/us/license.html %{buildroot}/usr/share/doc/texlive/texk_web2c_luatexdir_luazip_doc_us_license.html
+cp texk/web2c/pdftexdir/regex/COPYING.LIB %{buildroot}/usr/share/doc/texlive/texk_web2c_pdftexdir_regex_COPYING.LIB
+cp texk/web2c/ptexdir/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_web2c_ptexdir_COPYRIGHT
+cp texk/web2c/uptexdir/COPYRIGHT %{buildroot}/usr/share/doc/texlive/texk_web2c_uptexdir_COPYRIGHT
+cp texk/web2c/xetexdir/COPYING %{buildroot}/usr/share/doc/texlive/texk_web2c_xetexdir_COPYING
+cp utils/asymptote/LICENSE %{buildroot}/usr/share/doc/texlive/utils_asymptote_LICENSE
+cp utils/asymptote/LICENSE.LESSER %{buildroot}/usr/share/doc/texlive/utils_asymptote_LICENSE.LESSER
+cp utils/autosp/autosp-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_autosp_autosp-src_COPYING
+cp utils/axodraw2/axodraw2-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_axodraw2_axodraw2-src_COPYING
+cp utils/devnag/COPYING %{buildroot}/usr/share/doc/texlive/utils_devnag_COPYING
+cp utils/m-tx/mtx-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_m-tx_mtx-src_COPYING
+cp utils/pmx/pmx-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_pmx_pmx-src_COPYING
+cp utils/ps2eps/ps2eps-src/LICENSE.txt %{buildroot}/usr/share/doc/texlive/utils_ps2eps_ps2eps-src_LICENSE.txt
+cp utils/t1utils/t1utils-src/LICENSE %{buildroot}/usr/share/doc/texlive/utils_t1utils_t1utils-src_LICENSE
+cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_xindy-src_COPYING
 %make_install
 
 %files
@@ -915,6 +916,7 @@ cp libs/xpdf/xpdf-src/COPYING3 %{buildroot}/usr/share/doc/texlive/libs_xpdf_xpdf
 /usr/share/doc/texlive/texk_dvipdfm-x_COPYING
 /usr/share/doc/texlive/texk_dvipng_dvipng-src_COPYING
 /usr/share/doc/texlive/texk_dvipng_dvipng-src_COPYING.LESSER
+/usr/share/doc/texlive/texk_dvipng_dvipng-src_COPYING.gd
 /usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_COPYING
 /usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_brotli_LICENSE
 /usr/share/doc/texlive/texk_dvisvgm_dvisvgm-src_libs_ff-woff_LICENSE
