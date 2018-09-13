@@ -9,6 +9,5 @@
 --with-system-zlib
 --with-system-freetype
 --disable-native-texlive-build
---disable-web2c
 --disable-dvisvgm
 --disable-xdvik

@@ -4,7 +4,7 @@
 #
 Name     : texlive
 Version  : 20180414
-Release  : 10
+Release  : 11
 URL      : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Source0  : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Summary  : Descriptive vector graphics language
@@ -57,6 +57,7 @@ BuildRequires : poppler
 BuildRequires : poppler-dev
 BuildRequires : sed
 BuildRequires : texlive
+Patch1: 0001-Selective-cast-to-avoid-fpermissive-errors.patch
 
 %description
 Asymptote is a powerful descriptive vector graphics language for technical
@@ -121,13 +122,14 @@ man components for the texlive package.
 
 %prep
 %setup -q -n texlive-20180414-source
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532719873
+export SOURCE_DATE_EPOCH=1536880919
 %configure --disable-static --enable-build-in-source-tree \
 --with-system-poppler \
 --with-system-mpfr \
@@ -139,13 +141,12 @@ export SOURCE_DATE_EPOCH=1532719873
 --with-system-zlib \
 --with-system-freetype \
 --disable-native-texlive-build \
---disable-web2c \
 --disable-dvisvgm \
 --disable-xdvik
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1532719873
+export SOURCE_DATE_EPOCH=1536880919
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/texlive
 cp libs/cairo/cairo-src/COPYING-LGPL-2.1 %{buildroot}/usr/share/doc/texlive/libs_cairo_cairo-src_COPYING-LGPL-2.1
@@ -234,6 +235,7 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/afm2afm
 /usr/bin/afm2pl
 /usr/bin/afm2tfm
+/usr/bin/aleph
 /usr/bin/allcm
 /usr/bin/allec
 /usr/bin/allneeded
@@ -254,6 +256,7 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/bibdoiadd
 /usr/bin/bibexport
 /usr/bin/bibmradd
+/usr/bin/bibtex
 /usr/bin/bibtex8
 /usr/bin/bibtexu
 /usr/bin/biburl2doi
@@ -280,8 +283,11 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/convbkmk
 /usr/bin/convertgls2bib
 /usr/bin/ctan-o-mat
+/usr/bin/ctangle
 /usr/bin/ctanify
 /usr/bin/ctanupload
+/usr/bin/ctie
+/usr/bin/cweave
 /usr/bin/de-macro
 /usr/bin/depythontex
 /usr/bin/detex
@@ -298,6 +304,7 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/dviasm
 /usr/bin/dvibook
 /usr/bin/dviconcat
+/usr/bin/dvicopy
 /usr/bin/dvidvi
 /usr/bin/dvigif
 /usr/bin/dvihp
@@ -316,6 +323,8 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/dvired
 /usr/bin/dviselect
 /usr/bin/dvitodvi
+/usr/bin/dvitomp
+/usr/bin/dvitype
 /usr/bin/e2pall
 /usr/bin/ebb
 /usr/bin/ebong
@@ -323,6 +332,8 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/epspdf
 /usr/bin/epspdftk
 /usr/bin/epstopdf
+/usr/bin/eptex
+/usr/bin/euptex
 /usr/bin/exceltex
 /usr/bin/extconv
 /usr/bin/extractbb
@@ -337,6 +348,9 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/gbklatex
 /usr/bin/gbkpdflatex
 /usr/bin/getmapdl
+/usr/bin/gftodvi
+/usr/bin/gftopk
+/usr/bin/gftype
 /usr/bin/gregorio
 /usr/bin/gsftopk
 /usr/bin/hbf2gf
@@ -349,6 +363,8 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/htxelatex
 /usr/bin/htxetex
 /usr/bin/includeres
+/usr/bin/inimf
+/usr/bin/initex
 /usr/bin/installfont-tl
 /usr/bin/jamo-normalize
 /usr/bin/jfmutil
@@ -388,7 +404,10 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/ltxfileinfo
 /usr/bin/ltximg
 /usr/bin/lua2dox_filter
+/usr/bin/luajittex
 /usr/bin/luaotfload-tool
+/usr/bin/luatex
+/usr/bin/luatex53
 /usr/bin/luatools
 /usr/bin/lwarpmk
 /usr/bin/m-tx
@@ -402,11 +421,21 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/match_parens
 /usr/bin/mathspic
 /usr/bin/mendex
+/usr/bin/mf
+/usr/bin/mf-nowin
 /usr/bin/mf2pt1
+/usr/bin/mflua
+/usr/bin/mflua-nowin
+/usr/bin/mfluajit
+/usr/bin/mfluajit-nowin
+/usr/bin/mfplain
+/usr/bin/mft
 /usr/bin/mk4ht
 /usr/bin/mkgrkindex
 /usr/bin/mkindex
 /usr/bin/mkjobtexmf
+/usr/bin/mkocp
+/usr/bin/mkofm
 /usr/bin/mkpic
 /usr/bin/mkt1font
 /usr/bin/mktexfmt
@@ -416,6 +445,7 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/mktextfm
 /usr/bin/mmafm
 /usr/bin/mmpfb
+/usr/bin/mpost
 /usr/bin/mptopdf
 /usr/bin/msxlint
 /usr/bin/mtxrun
@@ -423,9 +453,21 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/multibibliography
 /usr/bin/musixflx
 /usr/bin/musixtex
+/usr/bin/odvicopy
+/usr/bin/odvitype
+/usr/bin/ofm2opl
+/usr/bin/omfonts
+/usr/bin/opl2ofm
 /usr/bin/ot2kpx
+/usr/bin/otangle
 /usr/bin/otfinfo
 /usr/bin/otftotfm
+/usr/bin/otp2ocp
+/usr/bin/outocp
+/usr/bin/ovf2ovp
+/usr/bin/ovp2ovf
+/usr/bin/patgen
+/usr/bin/pbibtex
 /usr/bin/pdf180
 /usr/bin/pdf270
 /usr/bin/pdf90
@@ -445,7 +487,11 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/pdfnup
 /usr/bin/pdfopen
 /usr/bin/pdfpun
+/usr/bin/pdftex
+/usr/bin/pdftosrc
 /usr/bin/pdfxup
+/usr/bin/pdvitomp
+/usr/bin/pdvitype
 /usr/bin/pedigree
 /usr/bin/perltex
 /usr/bin/pfarrei
@@ -453,9 +499,15 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/pk2bm
 /usr/bin/pkfix
 /usr/bin/pkfix-helper
+/usr/bin/pktogf
+/usr/bin/pktype
+/usr/bin/pltotf
+/usr/bin/pmpost
 /usr/bin/pmxab
 /usr/bin/pmxchords
 /usr/bin/pn2pdf
+/usr/bin/pooltype
+/usr/bin/ppltotf
 /usr/bin/prepmx
 /usr/bin/ps2eps
 /usr/bin/ps2frag
@@ -469,7 +521,9 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/psselect
 /usr/bin/pst2pdf
 /usr/bin/pstops
+/usr/bin/ptex
 /usr/bin/ptex2pdf
+/usr/bin/ptftopl
 /usr/bin/purifyeps
 /usr/bin/pygmentex
 /usr/bin/pythontex
@@ -488,6 +542,7 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/srcredact
 /usr/bin/sty2dtx
 /usr/bin/svn-multi
+/usr/bin/synctex
 /usr/bin/t1ascii
 /usr/bin/t1asm
 /usr/bin/t1binary
@@ -500,6 +555,9 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/t1testpage
 /usr/bin/t1unmac
 /usr/bin/t4ht
+/usr/bin/tangle
+/usr/bin/teckit_compile
+/usr/bin/tex
 /usr/bin/tex2aspc
 /usr/bin/tex4ebook
 /usr/bin/tex4ht
@@ -518,15 +576,23 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/texlinks
 /usr/bin/texliveonfly
 /usr/bin/texloganalyser
+/usr/bin/texlua
+/usr/bin/texlua53
+/usr/bin/texluac
+/usr/bin/texluajit
+/usr/bin/texluajitc
 /usr/bin/texmfstart
 /usr/bin/texosquery
 /usr/bin/texosquery-jre5
 /usr/bin/texosquery-jre8
+/usr/bin/tftopl
 /usr/bin/thumbpdf
+/usr/bin/tie
 /usr/bin/tlcockpit
 /usr/bin/tlmgr
 /usr/bin/tlshell
 /usr/bin/tpic2pdftex
+/usr/bin/ttf2afm
 /usr/bin/ttf2kotexfont
 /usr/bin/ttf2pk
 /usr/bin/ttf2tfm
@@ -534,17 +600,32 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/bin/ttftotype42
 /usr/bin/typeoutfileinfo
 /usr/bin/ulqda
+/usr/bin/upbibtex
 /usr/bin/updmap
 /usr/bin/updmap-sys
 /usr/bin/updmap-user
+/usr/bin/updvitomp
+/usr/bin/updvitype
 /usr/bin/upmendex
+/usr/bin/upmpost
+/usr/bin/uppltotf
+/usr/bin/uptex
+/usr/bin/uptftopl
 /usr/bin/urlbst
+/usr/bin/vftovp
 /usr/bin/vlna
 /usr/bin/vpe
 /usr/bin/vpl2ovp
 /usr/bin/vpl2vpl
+/usr/bin/vptovf
+/usr/bin/weave
+/usr/bin/wofm2opl
+/usr/bin/wopl2ofm
 /usr/bin/wordcount
+/usr/bin/wovf2ovp
+/usr/bin/wovp2ovf
 /usr/bin/xdvipdfmx
+/usr/bin/xetex
 /usr/bin/xhlatex
 /usr/bin/yplan
 
@@ -872,8 +953,30 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/include/kpathsea/win32lib.h
 /usr/include/ptexenc/ptexenc.h
 /usr/include/ptexenc/unicode.h
+/usr/include/synctex/synctex_parser.h
+/usr/include/synctex/synctex_parser_utils.h
+/usr/include/texlua52/lauxlib.h
+/usr/include/texlua52/lua.h
+/usr/include/texlua52/lua.hpp
+/usr/include/texlua52/luaconf.h
+/usr/include/texlua52/lualib.h
+/usr/include/texlua53/lauxlib.h
+/usr/include/texlua53/lua.h
+/usr/include/texlua53/lua.hpp
+/usr/include/texlua53/luaconf.h
+/usr/include/texlua53/lualib.h
+/usr/include/texluajit/lauxlib.h
+/usr/include/texluajit/lua.h
+/usr/include/texluajit/lua.hpp
+/usr/include/texluajit/luaconf.h
+/usr/include/texluajit/luajit.h
+/usr/include/texluajit/lualib.h
 /usr/lib64/pkgconfig/kpathsea.pc
 /usr/lib64/pkgconfig/ptexenc.pc
+/usr/lib64/pkgconfig/synctex.pc
+/usr/lib64/pkgconfig/texlua52.pc
+/usr/lib64/pkgconfig/texlua53.pc
+/usr/lib64/pkgconfig/texluajit.pc
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -958,19 +1061,26 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 %defattr(-,root,root,-)
 /usr/share/man/man1/afm2pl.1
 /usr/share/man/man1/afm2tfm.1
+/usr/share/man/man1/aleph.1
 /usr/share/man/man1/allcm.1
 /usr/share/man/man1/allec.1
 /usr/share/man/man1/allneeded.1
+/usr/share/man/man1/amstex.1
 /usr/share/man/man1/autosp.1
 /usr/share/man/man1/axohelp.1
 /usr/share/man/man1/bbox.1
 /usr/share/man/man1/bg5conv.1
+/usr/share/man/man1/bibtex.1
 /usr/share/man/man1/cef5conv.1
 /usr/share/man/man1/cefconv.1
 /usr/share/man/man1/cefsconv.1
 /usr/share/man/man1/cfftot1.1
 /usr/share/man/man1/chktex.1
 /usr/share/man/man1/chkweb.1
+/usr/share/man/man1/ctangle.1
+/usr/share/man/man1/ctie.1
+/usr/share/man/man1/cweave.1
+/usr/share/man/man1/cweb.1
 /usr/share/man/man1/detex.1
 /usr/share/man/man1/devnag.1
 /usr/share/man/man1/deweb.1
@@ -981,6 +1091,7 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/share/man/man1/dvi2tty.1
 /usr/share/man/man1/dvibook.1
 /usr/share/man/man1/dviconcat.1
+/usr/share/man/man1/dvicopy.1
 /usr/share/man/man1/dvidvi.1
 /usr/share/man/man1/dvigif.1
 /usr/share/man/man1/dvihp.1
@@ -998,6 +1109,8 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/share/man/man1/dvired.1
 /usr/share/man/man1/dviselect.1
 /usr/share/man/man1/dvitodvi.1
+/usr/share/man/man1/dvitomp.1
+/usr/share/man/man1/dvitype.1
 /usr/share/man/man1/e2pall.1
 /usr/share/man/man1/ebb.1
 /usr/share/man/man1/epsffit.1
@@ -1007,9 +1120,14 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/share/man/man1/fmtutil-sys.1
 /usr/share/man/man1/fmtutil.1
 /usr/share/man/man1/fontinst.1
+/usr/share/man/man1/gftodvi.1
+/usr/share/man/man1/gftopk.1
+/usr/share/man/man1/gftype.1
 /usr/share/man/man1/gsftopk.1
 /usr/share/man/man1/hbf2gf.1
 /usr/share/man/man1/includeres.1
+/usr/share/man/man1/inimf.1
+/usr/share/man/man1/initex.1
 /usr/share/man/man1/kpseaccess.1
 /usr/share/man/man1/kpsepath.1
 /usr/share/man/man1/kpsereadlink.1
@@ -1019,11 +1137,19 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/share/man/man1/kpsewhich.1
 /usr/share/man/man1/kpsexpand.1
 /usr/share/man/man1/lacheck.1
+/usr/share/man/man1/lamed.1
+/usr/share/man/man1/latex.1
+/usr/share/man/man1/luatex.1
 /usr/share/man/man1/mag.1
 /usr/share/man/man1/makeindex.1
 /usr/share/man/man1/makejvf.1
 /usr/share/man/man1/mendex.1
+/usr/share/man/man1/mf-nowin.1
+/usr/share/man/man1/mf.1
+/usr/share/man/man1/mft.1
 /usr/share/man/man1/mkindex.1
+/usr/share/man/man1/mkocp.1
+/usr/share/man/man1/mkofm.1
 /usr/share/man/man1/mktexfmt.1
 /usr/share/man/man1/mktexlsr.1
 /usr/share/man/man1/mktexmf.1
@@ -1031,14 +1157,33 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/share/man/man1/mktextfm.1
 /usr/share/man/man1/mmafm.1
 /usr/share/man/man1/mmpfb.1
+/usr/share/man/man1/mpost.1
 /usr/share/man/man1/msxlint.1
+/usr/share/man/man1/odvicopy.1
+/usr/share/man/man1/odvitype.1
+/usr/share/man/man1/ofm2opl.1
+/usr/share/man/man1/opl2ofm.1
+/usr/share/man/man1/otangle.1
 /usr/share/man/man1/otfinfo.1
 /usr/share/man/man1/otftotfm.1
+/usr/share/man/man1/otp2ocp.1
+/usr/share/man/man1/outocp.1
+/usr/share/man/man1/ovf2ovp.1
+/usr/share/man/man1/ovp2ovf.1
+/usr/share/man/man1/patgen.1
 /usr/share/man/man1/pdfclose.1
+/usr/share/man/man1/pdfetex.1
+/usr/share/man/man1/pdflatex.1
 /usr/share/man/man1/pdfopen.1
+/usr/share/man/man1/pdftex.1
+/usr/share/man/man1/pdftosrc.1
 /usr/share/man/man1/pfb2pfa.1
 /usr/share/man/man1/pk2bm.1
+/usr/share/man/man1/pktogf.1
+/usr/share/man/man1/pktype.1
+/usr/share/man/man1/pltotf.1
 /usr/share/man/man1/pmxab.1
+/usr/share/man/man1/pooltype.1
 /usr/share/man/man1/prepmx.1
 /usr/share/man/man1/ps2eps.1
 /usr/share/man/man1/ps2frag.1
@@ -1055,6 +1200,7 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/share/man/man1/rumakeindex.1
 /usr/share/man/man1/scor2prt.1
 /usr/share/man/man1/sjisconv.1
+/usr/share/man/man1/synctex.1
 /usr/share/man/man1/t1ascii.1
 /usr/share/man/man1/t1asm.1
 /usr/share/man/man1/t1binary.1
@@ -1066,20 +1212,31 @@ cp utils/xindy/xindy-src/COPYING %{buildroot}/usr/share/doc/texlive/utils_xindy_
 /usr/share/man/man1/t1reencode.1
 /usr/share/man/man1/t1testpage.1
 /usr/share/man/man1/t1unmac.1
+/usr/share/man/man1/tangle.1
+/usr/share/man/man1/tex.1
 /usr/share/man/man1/tex2aspc.1
 /usr/share/man/man1/texconfig-sys.1
 /usr/share/man/man1/texconfig.1
 /usr/share/man/man1/texdoctk.1
 /usr/share/man/man1/texhash.1
 /usr/share/man/man1/texlinks.1
+/usr/share/man/man1/texlua.1
+/usr/share/man/man1/texluac.1
+/usr/share/man/man1/tftopl.1
+/usr/share/man/man1/tie.1
 /usr/share/man/man1/tpic2pdftex.1
+/usr/share/man/man1/ttf2afm.1
 /usr/share/man/man1/ttf2pk.1
 /usr/share/man/man1/ttf2tfm.1
 /usr/share/man/man1/ttfdump.1
 /usr/share/man/man1/ttftotype42.1
 /usr/share/man/man1/updmap-sys.1
 /usr/share/man/man1/updmap.1
+/usr/share/man/man1/vftovp.1
 /usr/share/man/man1/vlna.1
+/usr/share/man/man1/vptovf.1
+/usr/share/man/man1/weave.1
 /usr/share/man/man1/xdvipdfmx.1
 /usr/share/man/man5/fmtutil.cnf.5
+/usr/share/man/man5/synctex.5
 /usr/share/man/man5/updmap.cfg.5

@@ -38,8 +38,6 @@ Configure miss: __int64
 Configure miss: if pointers to integers require aligned access
 Configure miss: whether to build debug libraries
 Configure miss: ICULEHB
-Configure miss: gmake
-Configure miss: gnumake
 Configure miss: whether strict compiling is on
 Configure miss: whether to enable auto cleanup of libraries
 Configure miss: whether to enable function and data tracing
@@ -95,7 +93,6 @@ Configure miss: x86_64-generic-linux-gnu-freetype-config
 Configure miss: native WIN32 or MINGW32
 Configure miss: native WIN32 or MINGW32
 Configure miss: x86_64-generic-linux-gnu-freetype-config
-Configure miss: gsapi_revision in -lgs
 Configure miss: whether realpath works
 Configure miss: where template objects are stored
 Configure miss: new.h usability

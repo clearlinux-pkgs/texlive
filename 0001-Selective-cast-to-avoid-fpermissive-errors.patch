@@ -1,0 +1,54 @@
+From 8dc5ac9542db3aa1027a79b1a6b1442c3aedb7ef Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 13 Sep 2018 14:53:56 -0700
+Subject: [PATCH] Selective cast to avoid -fpermissive errors
+
+In order to avoid passing -fpermissive to a wider set of the package,
+selectively cast to remove const qualifiers in certain cases.
+---
+ texk/web2c/luatexdir/image/pdftoepdf.w | 4 ++--
+ texk/web2c/luatexdir/lua/lepdflib.cc   | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/texk/web2c/luatexdir/image/pdftoepdf.w b/texk/web2c/luatexdir/image/pdftoepdf.w
+index 7ba29731..d6979592 100644
+--- a/texk/web2c/luatexdir/image/pdftoepdf.w
++++ b/texk/web2c/luatexdir/image/pdftoepdf.w
+@@ -472,10 +472,10 @@ static void copyObject(PDF pdf, PdfDocument * pdf_doc, Object * obj)
+         break;
+     */
+     case objString:
+-        copyString(pdf, obj->getString());
++        copyString(pdf, (GooString *)obj->getString());
+         break;
+     case objName:
+-        copyName(pdf, obj->getName());
++        copyName(pdf, (char *)obj->getName());
+         break;
+     case objNull:
+         pdf_add_null(pdf);
+diff --git a/texk/web2c/luatexdir/lua/lepdflib.cc b/texk/web2c/luatexdir/lua/lepdflib.cc
+index a16bf3bd..60bf3b6c 100644
+--- a/texk/web2c/luatexdir/lua/lepdflib.cc
++++ b/texk/web2c/luatexdir/lua/lepdflib.cc
+@@ -674,7 +674,7 @@ static int m_##in##_##function(lua_State * L)                  \
+     uin = (udstruct *) luaL_checkudata(L, 1, M_##in);          \
+     if (uin->pd != NULL && uin->pd->pc != uin->pc)             \
+         pdfdoc_changed_error(L);                               \
+-    gs = ((in *) uin->d)->function();                          \
++    gs = (GooString*)(((in *) uin->d)->function());            \
+     if (gs != NULL)                                            \
+         lua_pushlstring(L, gs->getCString(), gs->getLength()); \
+     else                                                       \
+@@ -1813,7 +1813,7 @@ static int m_Object_getString(lua_State * L)
+     if (uin->pd != NULL && uin->pd->pc != uin->pc)
+         pdfdoc_changed_error(L);
+     if (((Object *) uin->d)->isString()) {
+-        gs = ((Object *) uin->d)->getString();
++        gs = (GooString *)(((Object *) uin->d)->getString());
+         lua_pushlstring(L, gs->getCString(), gs->getLength());
+     } else
+         lua_pushnil(L);
+-- 
+2.19.0
+
