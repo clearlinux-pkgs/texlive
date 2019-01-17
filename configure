@@ -1,5 +1,4 @@
 --enable-build-in-source-tree
---with-system-poppler
 --with-system-mpfr
 --with-system-gmp
 --with-system-cairo

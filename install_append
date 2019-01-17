@@ -1,0 +1,21 @@
+mkdir -p %{buildroot}/usr/share/texmf-dist/{tex,doc,fonts,makeindex,scripts,bibtex}
+pushd clear-tlnet
+
+cp -R extra_1/* %{buildroot}/usr/share/texmf-dist/tex/
+cp -R extra_2/* %{buildroot}/usr/share/texmf-dist/doc/
+cp -R extra_3/* %{buildroot}/usr/share/texmf-dist/fonts/
+cp -R extra_4/* %{buildroot}/usr/share/texmf-dist/makeindex/
+cp -R extra_5/* %{buildroot}/usr/share/texmf-dist/doc/
+cp -R extra_6/* %{buildroot}/usr/share/texmf-dist/scripts/
+cp -R extra_7/* %{buildroot}/usr/share/texmf-dist/doc/
+cp -R extra_8/* %{buildroot}/usr/share/texmf-dist/bibtex/
+cp -R extra_9/* %{buildroot}/usr/share/texmf-dist/doc/
+cp -R extra_10/* %{buildroot}/usr/share/texmf-dist/doc/
+
+rm -rf extra_1 extra_2 extra_3 extra_4 extra_5 extra_6 extra_7 extra_8 extra_9 extra_10
+
+for extra in $(find . -maxdepth 1 -mindepth 1 -type d)
+do
+cp -R $extra/* %{buildroot}/usr/share/texmf-dist
+done
+popd
