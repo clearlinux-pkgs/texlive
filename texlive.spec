@@ -4,7 +4,7 @@
 #
 Name     : texlive
 Version  : 20180414
-Release  : 12
+Release  : 13
 URL      : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Source0  : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Source1  : http://ctan.math.illinois.edu/systems/texlive/tlnet/archive/a2ping.doc.tar.xz
@@ -1933,7 +1933,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547698733
+export SOURCE_DATE_EPOCH=1547773981
 %configure --disable-static --enable-build-in-source-tree \
 --with-system-mpfr \
 --with-system-gmp \
@@ -1949,7 +1949,7 @@ export SOURCE_DATE_EPOCH=1547698733
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1547698733
+export SOURCE_DATE_EPOCH=1547773981
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/texlive
 cp clear-tlnet/extra_106/doc/eplain/COPYING %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_106_doc_eplain_COPYING
