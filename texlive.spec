@@ -4,7 +4,7 @@
 #
 Name     : texlive
 Version  : 20180414
-Release  : 15
+Release  : 16
 URL      : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Source0  : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Source1  : http://ctan.math.illinois.edu/systems/texlive/tlnet/archive/a2ping.doc.tar.xz
@@ -1935,7 +1935,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551142340
+export SOURCE_DATE_EPOCH=1551158296
 export LDFLAGS="${LDFLAGS} -fno-lto"
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -1956,7 +1956,7 @@ export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=use
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1551142340
+export SOURCE_DATE_EPOCH=1551158296
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/texlive
 cp clear-tlnet/extra_106/doc/eplain/COPYING %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_106_doc_eplain_COPYING
@@ -1965,7 +1965,6 @@ cp clear-tlnet/extra_114/doc/support/fig4latex/COPYING %{buildroot}/usr/share/pa
 cp clear-tlnet/extra_120/doc/support/fontools/GPLv2.txt %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_120_doc_support_fontools_GPLv2.txt
 cp clear-tlnet/extra_123/doc/support/fragmaster/COPYING %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_123_doc_support_fragmaster_COPYING
 cp clear-tlnet/extra_13/doc/fonts/accfonts/COPYING %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_13_doc_fonts_accfonts_COPYING
-cp clear-tlnet/extra_137/doc/fonts/jfmutil/LICENSE %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_137_doc_fonts_jfmutil_LICENSE
 cp clear-tlnet/extra_150/doc/support/latexdiff/COPYING %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_150_doc_support_latexdiff_COPYING
 cp clear-tlnet/extra_158/doc/support/latexpand/LICENCE %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_158_doc_support_latexpand_LICENCE
 cp clear-tlnet/extra_163/doc/lualatex/lilyglyphs/license/COPYING.LPPL %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_163_doc_lualatex_lilyglyphs_license_COPYING.LPPL
@@ -11196,6 +11195,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-a4wide.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-a5comb.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-abstract.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-academicons.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-accsupp.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-acro.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-acronym.sty
@@ -11223,6 +11223,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-axodraw2.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-backref.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-balance.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-bbding.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-biblatex.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-bibunits.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-bigdelim.sty
@@ -11246,6 +11247,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-cases.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-changebar.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-changepage.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-changes.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-chappg.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-chapterbib.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-chemfig.sty
@@ -11269,6 +11271,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-dblfnote.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-dcolumn.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-diagbox.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-dingbat.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-dprogress.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-draftcopy.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-draftfigure.sty
@@ -11290,6 +11293,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-epstopdf.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-errata.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-eso-pic.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-eurosym.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-everypage.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-everyshi.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-extramarks.sty
@@ -11300,6 +11304,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-fancyvrb.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-figcaps.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-figsize.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-fitbox.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-fix2col.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-fixme.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-fixmetodonotes.sty
@@ -11315,12 +11320,15 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-fncychap.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-fnlineno.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-fnpos.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-fontawesome.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-fontawesome5.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-fontenc.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-footmisc.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-footnote.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-footnotehyper.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-footnoterange.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-footnpag.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-foreign.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-forest.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-framed.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-ftnright.sty
@@ -11330,6 +11338,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-fwlw.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-gentombow.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-geometry.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-gloss.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-glossaries.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-gmeometric.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-graphics.sty
@@ -11351,6 +11360,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-imakeidx.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-index.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-intopdf.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-karnaugh-map.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-keyfloat.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-layaureo.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-layout.sty
@@ -11377,6 +11387,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-marginfit.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-marginfix.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-marginnote.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-marvosym.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-mcaption.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-mdframed.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-memhfixc.sty
@@ -11388,6 +11399,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-morefloats.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-moreverb.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-mparhack.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-multicap.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-multicol.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-multicolrule.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-multirow.sty
@@ -11400,9 +11412,11 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-needspace.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-nextpage.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-nicefrac.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-nomencl.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-nonfloat.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-nonumonpart.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-nopageno.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-notes.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-notespages.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-nowidow.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-ntheorem.sty
@@ -11428,6 +11442,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-pdfx.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-pfnote.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-phfqit.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-pifont.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-placeins.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-plarydshln.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-plext.sty
@@ -11488,6 +11503,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-srctex.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-stabular.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-stfloats.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-struktex.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-subcaption.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-subfig.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-subfigure.sty
@@ -11528,7 +11544,9 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-turnthepage.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-twoup.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-typearea.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-typicons.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-ulem.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-umoline.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-underscore.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-units.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-unitsdef.sty
@@ -11551,6 +11569,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-xechangebar.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-xellipsis.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-xetexko-vertical.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-xfakebold.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-xfrac.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-xltabular.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-xltxtra.sty
@@ -17846,7 +17865,6 @@ popd
 /usr/share/package-licenses/texlive/clear-tlnet_extra_114_doc_support_fig4latex_COPYING
 /usr/share/package-licenses/texlive/clear-tlnet_extra_120_doc_support_fontools_GPLv2.txt
 /usr/share/package-licenses/texlive/clear-tlnet_extra_123_doc_support_fragmaster_COPYING
-/usr/share/package-licenses/texlive/clear-tlnet_extra_137_doc_fonts_jfmutil_LICENSE
 /usr/share/package-licenses/texlive/clear-tlnet_extra_13_doc_fonts_accfonts_COPYING
 /usr/share/package-licenses/texlive/clear-tlnet_extra_150_doc_support_latexdiff_COPYING
 /usr/share/package-licenses/texlive/clear-tlnet_extra_158_doc_support_latexpand_LICENCE
