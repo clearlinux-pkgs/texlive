@@ -1,16 +1,16 @@
 # This file contains recursive sources that require this package
 OpenColorIO
+OpenIPMI
 R-MALDIquant
 R-NMF
+R-Sleuth2
 R-bbmle
 R-effects
 R-flexsurv
 R-gbm
 R-lfe
-R-lme4
 R-openxlsx
 R-phylobase
-R-robCompositions
 R-tikzDevice
 R-xtable
 VTK

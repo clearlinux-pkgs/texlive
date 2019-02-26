@@ -4,7 +4,7 @@
 #
 Name     : texlive
 Version  : 20180414
-Release  : 13
+Release  : 14
 URL      : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Source0  : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Source1  : http://ctan.math.illinois.edu/systems/texlive/tlnet/archive/a2ping.doc.tar.xz
@@ -369,7 +369,7 @@ Source359  : http://ctan.math.illinois.edu/systems/texlive/tlnet/archive/yplan.d
 Source360  : http://ctan.math.illinois.edu/systems/texlive/tlnet/archive/yplan.tar.xz
 Summary  : Diff for LaTeX files
 Group    : Development/Tools
-License  : Apache-2.0 BSD-3-Clause BSL-1.0 CPL-1.0 FTL GPL-2.0 GPL-3.0 IJG LGPL-2.0 LGPL-2.1 LGPL-2.1+ LGPL-3.0 LPPL-1.0 LPPL-1.3c Libpng MIT MPL-1.1 MakeIndex NCSA OFL-1.1 Zlib psutils
+License  : Apache-2.0 BSD-2-Clause BSD-3-Clause BSL-1.0 CPL-1.0 FTL GPL-2.0 GPL-3.0 IJG LGPL-2.0 LGPL-2.1 LGPL-2.1+ LGPL-3.0 LPPL-1.0 LPPL-1.3c Libpng MIT MPL-1.1 MakeIndex NCSA OFL-1.1 Zlib psutils
 Requires: texlive-bin = %{version}-%{release}
 Requires: texlive-data = %{version}-%{release}
 Requires: texlive-license = %{version}-%{release}
@@ -418,6 +418,7 @@ BuildRequires : poppler-dev
 BuildRequires : sed
 BuildRequires : texlive
 Patch1: 0001-Selective-cast-to-avoid-fpermissive-errors.patch
+Patch2: CVE-2018-17407.patch
 
 %description
 latexdiff is a Perl script, which compares two latex files and marks
@@ -1927,13 +1928,19 @@ cp -r %{_topdir}/BUILD/texmf-dist/* %{_topdir}/BUILD/texlive-20180414-source/cle
 mkdir -p clear-tlnet/extra_360
 cp -r %{_topdir}/BUILD/texmf-dist/* %{_topdir}/BUILD/texlive-20180414-source/clear-tlnet/extra_360
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547773981
+export SOURCE_DATE_EPOCH=1551142340
+export LDFLAGS="${LDFLAGS} -fno-lto"
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --enable-build-in-source-tree \
 --with-system-mpfr \
 --with-system-gmp \
@@ -1949,7 +1956,7 @@ export SOURCE_DATE_EPOCH=1547773981
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1547773981
+export SOURCE_DATE_EPOCH=1551142340
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/texlive
 cp clear-tlnet/extra_106/doc/eplain/COPYING %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_106_doc_eplain_COPYING
@@ -1964,6 +1971,7 @@ cp clear-tlnet/extra_158/doc/support/latexpand/LICENCE %{buildroot}/usr/share/pa
 cp clear-tlnet/extra_163/doc/lualatex/lilyglyphs/license/COPYING.LPPL %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_163_doc_lualatex_lilyglyphs_license_COPYING.LPPL
 cp clear-tlnet/extra_164/fonts/opentype/public/lilyglyphs/LICENSE.OFL %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_164_fonts_opentype_public_lilyglyphs_LICENSE.OFL
 cp clear-tlnet/extra_177/doc/luatex/luaotfload/COPYING %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_177_doc_luatex_luaotfload_COPYING
+cp clear-tlnet/extra_22/doc/support/arara/chapters/license.tex %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_22_doc_support_arara_chapters_license.tex
 cp clear-tlnet/extra_231/doc/support/pdfjam/COPYING %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_231_doc_support_pdfjam_COPYING
 cp clear-tlnet/extra_241/doc/support/pedigree-perl/LICENSE %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_241_doc_support_pedigree-perl_LICENSE
 cp clear-tlnet/extra_245/doc/generic/petri-nets/COPYING %{buildroot}/usr/share/package-licenses/texlive/clear-tlnet_extra_245_doc_generic_petri-nets_COPYING
@@ -2644,9 +2652,10 @@ popd
 /usr/share/texmf-dist/doc/amstex/base/amsguide.tex
 /usr/share/texmf-dist/doc/amstex/base/amsppt.doc
 /usr/share/texmf-dist/doc/amstex/base/amsppt.faq
-/usr/share/texmf-dist/doc/amstex/base/amstinst.ps.gz
+/usr/share/texmf-dist/doc/amstex/base/amsppt.txt
+/usr/share/texmf-dist/doc/amstex/base/amstex.txt
+/usr/share/texmf-dist/doc/amstex/base/amstinst.pdf
 /usr/share/texmf-dist/doc/amstex/base/amstinst.tex
-/usr/share/texmf-dist/doc/amstex/base/joyerr.tex
 /usr/share/texmf-dist/doc/amstex/base/joyerr2.tex
 /usr/share/texmf-dist/doc/bibtex/base/README
 /usr/share/texmf-dist/doc/bibtex/base/btxbst.doc
@@ -3772,6 +3781,7 @@ popd
 /usr/share/texmf-dist/doc/generic/m-tx/README
 /usr/share/texmf-dist/doc/generic/m-tx/README.documentation
 /usr/share/texmf-dist/doc/generic/m-tx/borup.mtx
+/usr/share/texmf-dist/doc/generic/m-tx/borup.pdf
 /usr/share/texmf-dist/doc/generic/m-tx/buildmtxdoc.lua
 /usr/share/texmf-dist/doc/generic/m-tx/buildzip.lua
 /usr/share/texmf-dist/doc/generic/m-tx/chord.mtx
@@ -3781,8 +3791,10 @@ popd
 /usr/share/texmf-dist/doc/generic/m-tx/dwoman.mtb
 /usr/share/texmf-dist/doc/generic/m-tx/dwoman.mtx
 /usr/share/texmf-dist/doc/generic/m-tx/halleluja.ltx
+/usr/share/texmf-dist/doc/generic/m-tx/halleluja.pdf
 /usr/share/texmf-dist/doc/generic/m-tx/hallelujashort.ltx
 /usr/share/texmf-dist/doc/generic/m-tx/kanons.ltx
+/usr/share/texmf-dist/doc/generic/m-tx/kanons.pdf
 /usr/share/texmf-dist/doc/generic/m-tx/kroonhom.mtx
 /usr/share/texmf-dist/doc/generic/m-tx/loofnou.mtx
 /usr/share/texmf-dist/doc/generic/m-tx/lyrics.tex
@@ -3812,7 +3824,6 @@ popd
 /usr/share/texmf-dist/doc/generic/m-tx/mtxdoc.pdf
 /usr/share/texmf-dist/doc/generic/m-tx/mtxdoc.sty
 /usr/share/texmf-dist/doc/generic/m-tx/mtxindex.tex
-/usr/share/texmf-dist/doc/generic/m-tx/mtxlatex.sty
 /usr/share/texmf-dist/doc/generic/m-tx/netfirst.mtx
 /usr/share/texmf-dist/doc/generic/m-tx/netsoos.mta
 /usr/share/texmf-dist/doc/generic/m-tx/netsoos1.mtb
@@ -5682,15 +5693,12 @@ popd
 /usr/share/texmf-dist/doc/support/epspdf/COPYING
 /usr/share/texmf-dist/doc/support/epspdf/Changelog
 /usr/share/texmf-dist/doc/support/epspdf/README
-/usr/share/texmf-dist/doc/support/epspdf/default.css
 /usr/share/texmf-dist/doc/support/epspdf/epspdf.pdf
 /usr/share/texmf-dist/doc/support/epspdf/epspdf.texi
 /usr/share/texmf-dist/doc/support/epspdf/images/cnv_linux.png
 /usr/share/texmf-dist/doc/support/epspdf/images/config_lnx.png
 /usr/share/texmf-dist/doc/support/epspdf/images/epspdf.png
 /usr/share/texmf-dist/doc/support/epspdf/images/logo.pdf
-/usr/share/texmf-dist/doc/support/epspdf/images/main_w8.png
-/usr/share/texmf-dist/doc/support/epspdf/index.html
 /usr/share/texmf-dist/doc/support/epspdf/pstexi.tex
 /usr/share/texmf-dist/doc/support/epstopdf/README
 /usr/share/texmf-dist/doc/support/fig4latex/CHANGES
@@ -7379,6 +7387,7 @@ popd
 /usr/share/texmf-dist/scripts/ebong/ebong.py
 /usr/share/texmf-dist/scripts/epspdf/epspdf.help
 /usr/share/texmf-dist/scripts/epspdf/epspdf.tlu
+/usr/share/texmf-dist/scripts/epspdf/epspdf4tk.cmd
 /usr/share/texmf-dist/scripts/epspdf/epspdftk.tcl
 /usr/share/texmf-dist/scripts/epstopdf/epstopdf.pl
 /usr/share/texmf-dist/scripts/exceltex/exceltex
@@ -10533,6 +10542,7 @@ popd
 /usr/share/texmf-dist/tex/generic/tex4ht/cp862.4ht
 /usr/share/texmf-dist/tex/generic/tex4ht/cp865.4ht
 /usr/share/texmf-dist/tex/generic/tex4ht/croatian.4ht
+/usr/share/texmf-dist/tex/generic/tex4ht/csquotes.4ht
 /usr/share/texmf-dist/tex/generic/tex4ht/curve.4ht
 /usr/share/texmf-dist/tex/generic/tex4ht/czech.4ht
 /usr/share/texmf-dist/tex/generic/tex4ht/danish.4ht
@@ -11200,6 +11210,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-anonchap.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-anysize.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-appendix.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-ar.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-arabicfront.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-array.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-arydshln.sty
@@ -11264,6 +11275,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-draftwatermark.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-easy-todo.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-ebook.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-ed.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-ellipsis.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-embrac.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-emptypage.sty
@@ -11337,7 +11349,6 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-idxlayout.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-ifoddpage.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-imakeidx.sty
-/usr/share/texmf-dist/tex/latex/lwarp/lwarp-indentfirst.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-index.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-intopdf.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-keyfloat.sty
@@ -11382,6 +11393,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-multirow.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-multitoc.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-musicography.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-nameauth.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-nameref.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-natbib.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-nccfancyhdr.sty
@@ -11476,6 +11488,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-srctex.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-stabular.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-stfloats.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-subcaption.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-subfig.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-subfigure.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-supertabular.sty
@@ -11511,6 +11524,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-transparent.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-trimclip.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-trivfloat.sty
+/usr/share/texmf-dist/tex/latex/lwarp/lwarp-truncate.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-turnthepage.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-twoup.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp-typearea.sty
@@ -11552,6 +11566,7 @@ popd
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp.sty
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp_baseline_marker.eps
 /usr/share/texmf-dist/tex/latex/lwarp/lwarp_baseline_marker.png
+/usr/share/texmf-dist/tex/latex/m-tx/mtxlatex.sty
 /usr/share/texmf-dist/tex/latex/makedtx/createdtx.sty
 /usr/share/texmf-dist/tex/latex/mathspic/mathspic.sty
 /usr/share/texmf-dist/tex/latex/mltex/lo1enc.def
@@ -11826,7 +11841,8 @@ popd
 /usr/share/texmf-dist/tex/luatex/gregoriotex/gregoriotex.lua
 /usr/share/texmf-dist/tex/luatex/gregoriotex/gregoriotex.tex
 /usr/share/texmf-dist/tex/luatex/gregoriotex/gsp-default.tex
-/usr/share/texmf-dist/tex/luatex/luaotfload/fontloader-2018-10-28.lua
+/usr/share/texmf-dist/tex/luatex/luaotfload/fontloader-2019-01-28.lua
+/usr/share/texmf-dist/tex/luatex/luaotfload/fontloader-basics-chr.lua
 /usr/share/texmf-dist/tex/luatex/luaotfload/fontloader-basics-gen.lua
 /usr/share/texmf-dist/tex/luatex/luaotfload/fontloader-basics-nod.lua
 /usr/share/texmf-dist/tex/luatex/luaotfload/fontloader-data-con.lua
@@ -17837,6 +17853,7 @@ popd
 /usr/share/package-licenses/texlive/clear-tlnet_extra_163_doc_lualatex_lilyglyphs_license_COPYING.LPPL
 /usr/share/package-licenses/texlive/clear-tlnet_extra_164_fonts_opentype_public_lilyglyphs_LICENSE.OFL
 /usr/share/package-licenses/texlive/clear-tlnet_extra_177_doc_luatex_luaotfload_COPYING
+/usr/share/package-licenses/texlive/clear-tlnet_extra_22_doc_support_arara_chapters_license.tex
 /usr/share/package-licenses/texlive/clear-tlnet_extra_231_doc_support_pdfjam_COPYING
 /usr/share/package-licenses/texlive/clear-tlnet_extra_241_doc_support_pedigree-perl_LICENSE
 /usr/share/package-licenses/texlive/clear-tlnet_extra_245_doc_generic_petri-nets_COPYING
