@@ -4,7 +4,7 @@
 #
 Name     : texlive
 Version  : 20180414
-Release  : 14
+Release  : 15
 URL      : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Source0  : http://ctan.mirrors.hoobly.com/systems/texlive/Source/texlive-20180414-source.tar.xz
 Source1  : http://ctan.math.illinois.edu/systems/texlive/tlnet/archive/a2ping.doc.tar.xz
