@@ -8,9 +8,15 @@ libfreetype.so.6
 libgcc_s.so.1
 libgd.so.3
 libgmp.so.10
+libgraphite2.so.3
+libharfbuzz-icu.so.0
+libharfbuzz.so.0
+libicui18n.so.63
+libicuuc.so.63
 libm.so.6
 libmpfr.so.6
 libpixman-1.so.0
 libpng16.so.16
+libpthread.so.0
 libstdc++.so.6
 libz.so.1

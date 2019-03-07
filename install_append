@@ -1,21 +1,36 @@
-mkdir -p %{buildroot}/usr/share/texmf-dist/{tex,doc,fonts,makeindex,scripts,bibtex}
-pushd clear-tlnet
+#tracce me
+export PS4='\e[38;5;4m$(date +"%s.%N") \e[38;5;24m${BASH_SOURCE}:\e[38;5;25m${LINENO}   \e[38;5;31m${FUNCNAME[0]}()\n\e[38;5;22m  ➜ \e[39m'
+set -x
 
-cp -R extra_1/* %{buildroot}/usr/share/texmf-dist/tex/
-cp -R extra_2/* %{buildroot}/usr/share/texmf-dist/doc/
-cp -R extra_3/* %{buildroot}/usr/share/texmf-dist/fonts/
-cp -R extra_4/* %{buildroot}/usr/share/texmf-dist/makeindex/
-cp -R extra_5/* %{buildroot}/usr/share/texmf-dist/doc/
-cp -R extra_6/* %{buildroot}/usr/share/texmf-dist/scripts/
-cp -R extra_7/* %{buildroot}/usr/share/texmf-dist/doc/
-cp -R extra_8/* %{buildroot}/usr/share/texmf-dist/bibtex/
-cp -R extra_9/* %{buildroot}/usr/share/texmf-dist/doc/
-cp -R extra_10/* %{buildroot}/usr/share/texmf-dist/doc/
+#bootstrap me (use the binaries that were just built)
+export LD_LIBRARY_PATH=%{buildroot}/usr/lib64
+export PATH="%{buildroot}/usr/bin:$PATH"
 
-rm -rf extra_1 extra_2 extra_3 extra_4 extra_5 extra_6 extra_7 extra_8 extra_9 extra_10
 
-for extra in $(find . -maxdepth 1 -mindepth 1 -type d)
-do
-cp -R $extra/* %{buildroot}/usr/share/texmf-dist
-done
-popd
+#make texlinks
+texlinks -v -f %{buildroot}/usr/share/texmf-dist/web2c/fmtutil.cnf -e "" %{buildroot}/usr/bin
+
+cp -a jir/texmf-dist/  %{buildroot}/usr/share
+
+mkdir -vp %{buildroot}/usr/share/tlpkg/TeXLive/
+install -v -m644 texk/tests/TeXLive/* %{buildroot}/usr/share/tlpkg/TeXLive/
+
+_TEXFM_PATH=$(echo %{buildroot}/usr/share | sed -e 's/\//\\\//g')
+sed -i  s/TEXMFROOT\ =\ \$SELFAUTOPARENT/TEXMFROOT\ =\ $_TEXFM_PATH/ %{buildroot}/usr/share/texmf-dist/web2c/texmf.cnf
+
+#check that the perl variable was properly set:
+grep ^TEXMFROOT %{buildroot}/usr/share/texmf-dist/web2c/texmf.cnf
+
+mktexlsr
+fmtutil-sys --all
+mtxrun --generate
+
+_TEXMFROOT_PATH=$(echo /usr/share | sed -e 's/\//\\\//g')
+sed -i s/$_TEXFM_PATH/$_TEXMFROOT_PATH/ %{buildroot}/usr/share/texmf-dist/web2c/texmf.cnf
+#check that the perl variable was properly reset:
+grep ^TEXMFROOT %{buildroot}/usr/share/texmf-dist/web2c/texmf.cnf
+
+#make /usr/lib/rpm/check-buildroot happy:
+rm -rf %{buildroot}/usr/share/texmf-var
+rm -rf %{buildroot}/texmf-var
+rm -rf %{buildroot}/usr/share/texmf-dist/doc
