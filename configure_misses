@@ -9,7 +9,6 @@ Configure miss: native WIN32 or MINGW32
 Configure miss: if we need (v)snprintf wrapper functions
 Configure miss: native WIN32 or MINGW32
 Configure miss: native WIN32 or MINGW32
-Configure miss: native WIN32 or MINGW32
 Configure miss: if we need to force back C standard to C89
 Configure miss: x86_64-generic-linux-gnu-freetype-config
 Configure miss: native WIN32 or MINGW32
@@ -47,10 +46,7 @@ Configure miss: WIN64
 Configure miss: native WIN32 or MINGW32
 Configure miss: WIN64
 Configure miss: native WIN32 or MINGW32
-Configure miss: csplain
 Configure miss: clisp
-Configure miss: elatex
-Configure miss: lambda
 Configure miss: native WIN32 or MINGW32
 Configure miss: WIN64
 Configure miss: x86_64-generic-linux-gnu-objc++
@@ -65,8 +61,6 @@ Configure miss: x86_64-generic-linux-gnu-freetype-config
 Configure miss: x86_64-generic-linux-gnu-icu-config
 Configure miss: Object::initCmd(const char*) etc
 Configure miss: x86_64-generic-linux-gnu-icu-config
-Configure miss: elatex
-Configure miss: lambda
 Configure miss: stat.h usability
 Configure miss: stat.h presence
 Configure miss: stat.h
@@ -75,12 +69,6 @@ Configure miss: native WIN32 or MINGW32
 Configure miss: WIN64
 Configure miss: native WIN32 or MINGW32
 Configure miss: native WIN32 or MINGW32
-Configure miss: dvidvi.c:352:25: warning: format not a string literal and no format arguments [-Wformat-security]
-
-Configure miss: dvidvi.c:831:30: warning: format not a string literal and no format arguments [-Wformat-security]
-
-Configure miss: dvidvi.c:842:30: warning: format not a string literal and no format arguments [-Wformat-security]
-
 Configure miss: native WIN32 or MINGW32
 Configure miss: native WIN32 or MINGW32
 Configure miss: x86_64-generic-linux-gnu-freetype-config
