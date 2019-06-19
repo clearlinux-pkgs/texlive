@@ -18,6 +18,7 @@
 --with-system-libpng
 --with-system-mpfr
 --with-system-pixman
+--with-system-poppler
 --with-system-gd
 --with-system-zlib
 --with-system-freetype
