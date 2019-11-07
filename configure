@@ -1,15 +1,15 @@
+--disable-dvisvgm
 --disable-native-texlive-build
 --disable-static
 --disable-xdvik
 --enable-build-in-source-tree
---with-system-mpfr
---with-system-gmp
 --enable-shared
 --with-banner-add=" - CLR Linux"
 --with-system-cairo
 --with-system-fontconfig
---with-system-freetype2
 --with-system-freetype
+--with-system-freetype2
+--with-system-gd
 --with-system-gmp
 --with-system-graphite2
 --with-system-harfbuzz
@@ -19,9 +19,4 @@
 --with-system-mpfr
 --with-system-pixman
 --with-system-poppler
---with-system-gd
 --with-system-zlib
---with-system-freetype
---disable-native-texlive-build
---disable-dvisvgm
---disable-xdvik
