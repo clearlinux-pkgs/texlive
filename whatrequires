@@ -1,19 +1,15 @@
 # This file contains recursive sources that require this package
 OpenColorIO
 OpenIPMI
-R-MALDIquant
-R-NMF
 R-Sleuth2
 R-bbmle
+R-bipartite
 R-effects
 R-flexsurv
-R-gbm
 R-lfe
-R-openxlsx
-R-phylobase
-R-tikzDevice
-R-xtable
 VTK
 bro
 cmake
-texlive
+dvisvgm
+obs-studio
+supertuxkart

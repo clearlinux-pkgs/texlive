@@ -46,7 +46,12 @@ Configure miss: WIN64
 Configure miss: native WIN32 or MINGW32
 Configure miss: WIN64
 Configure miss: native WIN32 or MINGW32
+Configure miss: ctangle
+Configure miss: cweave
+Configure miss: csplain
 Configure miss: clisp
+Configure miss: elatex
+Configure miss: lambda
 Configure miss: native WIN32 or MINGW32
 Configure miss: WIN64
 Configure miss: x86_64-generic-linux-gnu-objc++
@@ -61,6 +66,8 @@ Configure miss: x86_64-generic-linux-gnu-freetype-config
 Configure miss: x86_64-generic-linux-gnu-icu-config
 Configure miss: Object::initCmd(const char*) etc
 Configure miss: x86_64-generic-linux-gnu-icu-config
+Configure miss: elatex
+Configure miss: lambda
 Configure miss: stat.h usability
 Configure miss: stat.h presence
 Configure miss: stat.h
@@ -99,6 +106,7 @@ Configure miss: WIN64
 Configure miss: x86_64-generic-linux-gnu-freetype-config
 Configure miss: x86_64-generic-linux-gnu-icu-config
 Configure miss: memicmp
+Configure miss: stropts.h and isastream()
 Configure miss: certain old versions of Linux
 Configure miss: sys/bsdtypes.h usability
 Configure miss: sys/bsdtypes.h presence
