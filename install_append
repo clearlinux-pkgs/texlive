@@ -10,7 +10,8 @@ export PATH="%{buildroot}/usr/bin:$PATH"
 #make texlinks
 texlinks -v -f %{buildroot}/usr/share/texmf-dist/web2c/fmtutil.cnf -e "" %{buildroot}/usr/bin
 
-cp -a jir/texmf-dist/  %{buildroot}/usr/share
+mkdir -p %{buildroot}/usr/share/texmf-dist
+cp -a jir/*  %{buildroot}/usr/share/texmf-dist
 
 mkdir -vp %{buildroot}/usr/share/tlpkg/TeXLive/
 install -v -m644 texk/tests/TeXLive/* %{buildroot}/usr/share/tlpkg/TeXLive/
