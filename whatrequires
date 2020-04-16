@@ -3,11 +3,15 @@ OpenColorIO
 OpenIPMI
 R-Sleuth2
 R-bipartite
+R-car
 R-effects
 R-flexsurv
 VTK
 bro
+clucene-core
 cmake
 dvisvgm
+libopenshot
+libopenshot-audio
 obs-studio
 supertuxkart

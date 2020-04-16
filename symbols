@@ -25,6 +25,7 @@ libkpathsea.so.6:kpathsea_all_path_search
 libkpathsea.so.6:kpathsea_bitmap_tolerance
 libkpathsea.so.6:kpathsea_brace_expand
 libkpathsea.so.6:kpathsea_cnf_get
+libkpathsea.so.6:kpathsea_cnf_line_env_progname
 libkpathsea.so.6:kpathsea_db_insert
 libkpathsea.so.6:kpathsea_db_search
 libkpathsea.so.6:kpathsea_db_search_list

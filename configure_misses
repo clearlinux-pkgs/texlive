@@ -35,7 +35,6 @@ Configure miss: whether system differentiates 64bit off_t by defines
 Configure miss: off64_t
 Configure miss: __int64
 Configure miss: if pointers to integers require aligned access
-Configure miss: x86_64-generic-linux-gnu-icu-config
 Configure miss: native WIN32 or MINGW32
 Configure miss: WIN64
 Configure miss: native WIN32 or MINGW32
