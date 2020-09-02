@@ -1,9 +1,7 @@
 # This file contains recursive sources that require this package
 OpenColorIO
 OpenIPMI
-R-Sleuth2
 R-bipartite
-R-car
 R-effects
 R-flexsurv
 VTK
