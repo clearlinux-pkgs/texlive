@@ -1,0 +1,12 @@
+diff -ru texlive-20200406-source~/jir/scripts/texlive/tlmgr.pl texlive-20200406-source/jir/scripts/texlive/tlmgr.pl
+--- texlive-20200406-source~/jir/scripts/texlive/tlmgr.pl	2020-03-21 16:45:22.000000000 +0000
++++ texlive-20200406-source/jir/scripts/texlive/tlmgr.pl	2020-09-29 19:02:33.235567174 +0000
+@@ -77,6 +77,8 @@
+     chomp($Master = `kpsewhich -var-value=SELFAUTOPARENT`);
+   }
+ 
++  $Master = "/usr/share";
++
+   # if we have no directory in which to find our modules,
+   # no point in going on.
+   if (! $Master) {

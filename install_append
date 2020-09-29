@@ -1,37 +1,51 @@
-#tracce me
+# Trace me
 export PS4='\e[38;5;4m$(date +"%s.%N") \e[38;5;24m${BASH_SOURCE}:\e[38;5;25m${LINENO}   \e[38;5;31m${FUNCNAME[0]}()\n\e[38;5;22m  ➜ \e[39m'
 set -x
 
-#bootstrap me (use the binaries that were just built)
+# Bootstrap me (use the binaries that were just built)
 export LD_LIBRARY_PATH=%{buildroot}/usr/lib64
 export PATH="%{buildroot}/usr/bin:$PATH"
 
-
-#make texlinks
+# Make texlinks
 texlinks -v -f %{buildroot}/usr/share/texmf-dist/web2c/fmtutil.cnf -e "" %{buildroot}/usr/bin
 
-mkdir -p %{buildroot}/usr/share/texmf-dist
-cp -a jir/*  %{buildroot}/usr/share/texmf-dist
+# Install all content from the "texmf" archive
+mkdir -pv %{buildroot}/usr/share/texmf-dist
+cp -a jir/* %{buildroot}/usr/share/texmf-dist
 
-mkdir -vp %{buildroot}/usr/share/tlpkg/TeXLive/
-install -v -m644 texk/tests/TeXLive/* %{buildroot}/usr/share/tlpkg/TeXLive/
+# Install some content from the "extra" archive
+mkdir -pv %{buildroot}/usr/share/tlpkg/TeXLive
+install -v -m644 extras/tlpkg/TeXLive/* %{buildroot}/usr/share/tlpkg/TeXLive/
 
-_TEXFM_PATH=$(echo %{buildroot}/usr/share | sed -e 's/\//\\\//g')
-sed -i  s/TEXMFROOT\ =\ \$SELFAUTOPARENT/TEXMFROOT\ =\ $_TEXFM_PATH/ %{buildroot}/usr/share/texmf-dist/web2c/texmf.cnf
+# Post-process the installed content:
+# - Remove some pre-built JARs and their wrapper scripts
+# - Remove documentation directory tree
+rm %{buildroot}/usr/bin/tlcockpit
+rm -r %{buildroot}/usr/share/texmf-dist/scripts/tlcockpit
+rm %{buildroot}/usr/bin/arara
+rm -r %{buildroot}/usr/share/texmf-dist/scripts/arara
+rm -rf %{buildroot}/usr/share/texmf-dist/doc
 
-#check that the perl variable was properly set:
-grep ^TEXMFROOT %{buildroot}/usr/share/texmf-dist/web2c/texmf.cnf
+# Set a temporary TEXMFROOT prior to running mktexlsr, etc
+texmf_conf=%{buildroot}/usr/share/texmf-dist/web2c/texmf.cnf
+_tmp_root_path=%{buildroot}/usr/share
+sed -i "s|\(TEXMFROOT =\).*|\1 $_tmp_root_path|" $texmf_conf
+grep -qx "TEXMFROOT = $_tmp_root_path" $texmf_conf
 
 mktexlsr
 fmtutil-sys --all
 mtxrun --generate
 
-_TEXMFROOT_PATH=$(echo /usr/share | sed -e 's/\//\\\//g')
-sed -i s/$_TEXFM_PATH/$_TEXMFROOT_PATH/ %{buildroot}/usr/share/texmf-dist/web2c/texmf.cnf
-#check that the perl variable was properly reset:
-grep ^TEXMFROOT %{buildroot}/usr/share/texmf-dist/web2c/texmf.cnf
+# Set TEXMFROOT to the final value for the install
+_inst_root_path=/usr/share
+sed -i "s|\(TEXMFROOT =\).*|\1 $_inst_root_path|" $texmf_conf
+grep -qx "TEXMFROOT = $_inst_root_path" $texmf_conf
 
-#make /usr/lib/rpm/check-buildroot happy:
+# Set TEXMFLOCAL to location for site-wide, non-distributed content
+_inst_local_path=/usr/share/texmf-local
+sed -i "s|\(TEXMFLOCAL =\).*|\1 $_inst_local_path|" $texmf_conf
+grep -qx "TEXMFLOCAL = $_inst_local_path" $texmf_conf
+
+# Make /usr/lib/rpm/check-buildroot happy
 rm -rf %{buildroot}/usr/share/texmf-var
 rm -rf %{buildroot}/texmf-var
-rm -rf %{buildroot}/usr/share/texmf-dist/doc
