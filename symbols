@@ -199,10 +199,8 @@ libsynctex.so.2:_synctex_get_io_mode_name
 libsynctex.so.2:_synctex_get_name
 libsynctex.so.2:_synctex_is_equivalent_file_name
 libsynctex.so.2:_synctex_last_path_component
-libsynctex.so.2:_synctex_log
 libsynctex.so.2:_synctex_malloc
 libsynctex.so.2:_synctex_merge_strings
-libsynctex.so.2:_synctex_node_next
 libsynctex.so.2:_synctex_path_is_absolute
 libsynctex.so.2:_synctex_strip_last_path_extension
 libsynctex.so.2:synctex_display_query
@@ -233,7 +231,6 @@ libsynctex.so.2:synctex_node_child_count
 libsynctex.so.2:synctex_node_column
 libsynctex.so.2:synctex_node_depth
 libsynctex.so.2:synctex_node_display
-libsynctex.so.2:synctex_node_free
 libsynctex.so.2:synctex_node_get_name
 libsynctex.so.2:synctex_node_h
 libsynctex.so.2:synctex_node_hbox_depth
@@ -267,8 +264,6 @@ libsynctex.so.2:synctex_node_visible_v
 libsynctex.so.2:synctex_node_visible_width
 libsynctex.so.2:synctex_node_weight
 libsynctex.so.2:synctex_node_width
-libsynctex.so.2:synctex_reader_free
-libsynctex.so.2:synctex_reader_init_with_output_file
 libsynctex.so.2:synctex_scanner_display
 libsynctex.so.2:synctex_scanner_display_switcher
 libsynctex.so.2:synctex_scanner_free

@@ -3,13 +3,9 @@ OpenColorIO
 OpenIPMI
 R-bipartite
 R-effects
-R-flexsurv
-VTK
-bro
 clucene-core
 cmake
 dvisvgm
-libopenshot
-libopenshot-audio
+gnuplot
 obs-studio
 supertuxkart
