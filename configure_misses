@@ -1,118 +1,119 @@
-Configure miss: native WIN32 or MINGW32
-Configure miss: x86_64-generic-linux-gnu-freetype-config
-Configure miss: x86_64-generic-linux-gnu-icu-config
-Configure miss: native WIN32 or MINGW32
-Configure miss: native WIN32 or MINGW32
-Configure miss: native WIN32 or MINGW32
-Configure miss: whether getcwd uses fork or vfork
-Configure miss: native WIN32 or MINGW32
-Configure miss: if we need (v)snprintf wrapper functions
-Configure miss: native WIN32 or MINGW32
-Configure miss: native WIN32 or MINGW32
-Configure miss: if we need to force back C standard to C89
-Configure miss: x86_64-generic-linux-gnu-freetype-config
-Configure miss: native WIN32 or MINGW32
-Configure miss: getisax
-Configure miss: whether float word ordering is bigendian
-Configure miss: sys/int_types.h usability
-Configure miss: sys/int_types.h presence
-Configure miss: sys/int_types.h
-Configure miss: uint128_t
-Configure miss: gcc float-conversion bug
-Configure miss: if the FP division by 0 fails
-Configure miss: if NAN == NAN
-Configure miss: ftell64
-Configure miss: native WIN32 or MINGW32
-Configure miss: ftell64
-Configure miss: sys/int_types.h usability
-Configure miss: sys/int_types.h presence
-Configure miss: sys/int_types.h
-Configure miss: winnt.h
-Configure miss: winbase.h
-Configure miss: direct.h usability
-Configure miss: direct.h presence
-Configure miss: whether system differentiates 64bit off_t by defines
-Configure miss: off64_t
+Configure miss: Mac OS X ApplicationServices framework
+Configure miss: Object::initCmd(const char*) etc
+Configure miss: WIN64
+Configure miss: WIN64
+Configure miss: WIN64
+Configure miss: WIN64
+Configure miss: WIN64
+Configure miss: WIN64
+Configure miss: WIN64
+Configure miss: WIN64
+Configure miss: WIN64
+Configure miss: WIN64
+Configure miss: Xm/XpmP.h
+Configure miss: Xm/XpmP.h presence
+Configure miss: Xm/XpmP.h usability
+Configure miss: XpQueryVersion in -lXp
 Configure miss: __int64
-Configure miss: if pointers to integers require aligned access
-Configure miss: native WIN32 or MINGW32
-Configure miss: WIN64
-Configure miss: native WIN32 or MINGW32
-Configure miss: WIN64
-Configure miss: native WIN32 or MINGW32
-Configure miss: native WIN32 or MINGW32
-Configure miss: WIN64
-Configure miss: native WIN32 or MINGW32
-Configure miss: WIN64
-Configure miss: native WIN32 or MINGW32
+Configure miss: addressable va_list type
+Configure miss: broken strnlen
+Configure miss: broken strtod
+Configure miss: byteorder.h
+Configure miss: byteorder.h presence
+Configure miss: byteorder.h usability
+Configure miss: certain old versions of Linux
+Configure miss: clisp
+Configure miss: csplain
 Configure miss: ctangle
 Configure miss: cweave
-Configure miss: csplain
-Configure miss: clisp
+Configure miss: direct.h presence
+Configure miss: direct.h usability
 Configure miss: elatex
+Configure miss: elatex
+Configure miss: floor
+Configure miss: ftell64
+Configure miss: gcc float-conversion bug
+Configure miss: getisax
+Configure miss: if NAN == NAN
+Configure miss: if pointers to integers require aligned access
+Configure miss: if the FP division by 0 fails
+Configure miss: if we need (v)snprintf wrapper functions
+Configure miss: if we need to force back C standard to C89
 Configure miss: lambda
+Configure miss: lambda
+Configure miss: memicmp
 Configure miss: native WIN32 or MINGW32
-Configure miss: WIN64
-Configure miss: x86_64-generic-linux-gnu-objc++
-Configure miss: x86_64-generic-linux-gnu-objcxx
-Configure miss: x86_64-generic-linux-gnu-CXX
-Configure miss: whether we are using the GNU Objective C++ compiler
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: native WIN32 or MINGW32
+Configure miss: new.h
+Configure miss: new.h presence
+Configure miss: new.h usability
+Configure miss: off64_t
+Configure miss: stat.h
+Configure miss: stat.h presence
+Configure miss: stat.h usability
+Configure miss: strlwr
+Configure miss: stropts.h and isastream()
+Configure miss: sys/bsdtypes.h
+Configure miss: sys/bsdtypes.h presence
+Configure miss: sys/bsdtypes.h usability
+Configure miss: sys/int_types.h
+Configure miss: sys/int_types.h
+Configure miss: sys/int_types.h presence
+Configure miss: sys/int_types.h presence
+Configure miss: sys/int_types.h usability
+Configure miss: sys/int_types.h usability
+Configure miss: types.h
+Configure miss: types.h presence
+Configure miss: types.h usability
+Configure miss: uint128_t
+Configure miss: where template objects are stored
+Configure miss: whether float word ordering is bigendian... checking for x86_64-generic-linux-gnu-strings
 Configure miss: whether g++ accepts -g
 Configure miss: whether gcc asm needs underscore
-Configure miss: native WIN32 or MINGW32
-Configure miss: Mac OS X ApplicationServices framework
-Configure miss: x86_64-generic-linux-gnu-freetype-config
-Configure miss: x86_64-generic-linux-gnu-icu-config
-Configure miss: Object::initCmd(const char*) etc
-Configure miss: x86_64-generic-linux-gnu-icu-config
-Configure miss: elatex
-Configure miss: lambda
-Configure miss: stat.h usability
-Configure miss: stat.h presence
-Configure miss: stat.h
-Configure miss: strlwr
-Configure miss: native WIN32 or MINGW32
-Configure miss: WIN64
-Configure miss: native WIN32 or MINGW32
-Configure miss: native WIN32 or MINGW32
-Configure miss: native WIN32 or MINGW32
-Configure miss: native WIN32 or MINGW32
-Configure miss: x86_64-generic-linux-gnu-freetype-config
-Configure miss: native WIN32 or MINGW32
-Configure miss: native WIN32 or MINGW32
-Configure miss: x86_64-generic-linux-gnu-freetype-config
+Configure miss: whether getcwd uses fork or vfork
 Configure miss: whether realpath works
-Configure miss: where template objects are stored
-Configure miss: new.h usability
-Configure miss: new.h presence
-Configure miss: new.h
-Configure miss: broken strtod
-Configure miss: broken strnlen
-Configure miss: floor
-Configure miss: byteorder.h usability
-Configure miss: byteorder.h presence
-Configure miss: byteorder.h
-Configure miss: native WIN32 or MINGW32
-Configure miss: addressable va_list type
-Configure miss: types.h usability
-Configure miss: types.h presence
-Configure miss: types.h
-Configure miss: native WIN32 or MINGW32
-Configure miss: native WIN32 or MINGW32
-Configure miss: WIN64
-Configure miss: native WIN32 or MINGW32
-Configure miss: WIN64
+Configure miss: whether system differentiates 64bit off_t by defines
+Configure miss: whether we are using the GNU Objective C++ compiler
+Configure miss: winbase.h
+Configure miss: winnt.h
+Configure miss: working INTMAX_MAX
+Configure miss: x86_64-generic-linux-gnu-CXX
+Configure miss: x86_64-generic-linux-gnu-freetype-config
+Configure miss: x86_64-generic-linux-gnu-freetype-config
+Configure miss: x86_64-generic-linux-gnu-freetype-config
+Configure miss: x86_64-generic-linux-gnu-freetype-config
+Configure miss: x86_64-generic-linux-gnu-freetype-config
 Configure miss: x86_64-generic-linux-gnu-freetype-config
 Configure miss: x86_64-generic-linux-gnu-icu-config
-Configure miss: memicmp
-Configure miss: stropts.h and isastream()
-Configure miss: certain old versions of Linux
-Configure miss: sys/bsdtypes.h usability
-Configure miss: sys/bsdtypes.h presence
-Configure miss: sys/bsdtypes.h
-Configure miss: Xm/XpmP.h usability
-Configure miss: Xm/XpmP.h presence
-Configure miss: Xm/XpmP.h
-Configure miss: XpQueryVersion in -lXp
-Configure miss: native WIN32 or MINGW32
-Configure miss: WIN64
+Configure miss: x86_64-generic-linux-gnu-icu-config
+Configure miss: x86_64-generic-linux-gnu-icu-config
+Configure miss: x86_64-generic-linux-gnu-icu-config
+Configure miss: x86_64-generic-linux-gnu-objc++
+Configure miss: x86_64-generic-linux-gnu-objcxx

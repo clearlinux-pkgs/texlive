@@ -1,11 +1,12 @@
 # This file contains recursive sources that require this package
 OpenColorIO
 OpenIPMI
-R-bipartite
 R-effects
+R-tram
 clucene-core
 cmake
 dvisvgm
 gnuplot
+kdsoap
 obs-studio
 supertuxkart
