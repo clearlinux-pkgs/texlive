@@ -7,5 +7,5 @@ cmake
 dvisvgm
 gnuplot
 kdsoap
-obs-studio
+pam_wrapper
 supertuxkart

@@ -11,6 +11,8 @@ texlinks -v -f %{buildroot}/usr/share/texmf-dist/web2c/fmtutil.cnf -e "" %{build
 
 # Install all content from the "texmf" archive
 mkdir -pv %{buildroot}/usr/share/texmf-dist
+# But don't pick up Windows executables or libraries
+find jir/ -type f '(' -name '*.exe' -o -name '*.dll' ')' -exec rm -f {} +
 cp -a jir/* %{buildroot}/usr/share/texmf-dist
 
 # Install some content from the "extra" archive
